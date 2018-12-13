@@ -11,11 +11,16 @@ namespace TypingGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Stage stage;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
+
+            stage = new Stage(Keyboard.GetState());
+            
         }
 
         /// <summary>
@@ -27,7 +32,6 @@ namespace TypingGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -41,6 +45,7 @@ namespace TypingGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            stage.LoadContent(Content);
         }
 
         /// <summary>
@@ -64,6 +69,8 @@ namespace TypingGame
 
             // TODO: Add your update logic here
 
+            stage.Update(Keyboard.GetState());
+
             base.Update(gameTime);
         }
 
@@ -76,6 +83,10 @@ namespace TypingGame
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+
+            spriteBatch.Begin();
+            stage.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
