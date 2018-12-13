@@ -16,12 +16,16 @@ namespace TypingGame
         private KeyboardState oldKeyState;
         private SpriteFont font;
         private string word;
+        private string[] words;
+        private Random random;
 
 
         public Stage(KeyboardState keyState)
         {
+            random = new Random();
             oldKeyState = keyState;
-            word = "tricycle";
+            words = System.IO.File.ReadAllText(@".\Content\long_words.txt").Split('\n');
+            word = words[random.Next(0, words.Length - 1)];
         }
         public void Update(KeyboardState keyState)
         {
@@ -42,7 +46,7 @@ namespace TypingGame
                 word = word.Substring(1);
                 if (word.Length == 0)
                 {
-                    word = "ubiquitous";
+                    word = words[random.Next(0, words.Length - 1)];
                 }
             }
         }
