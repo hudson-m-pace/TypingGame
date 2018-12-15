@@ -45,7 +45,7 @@ namespace TypingGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            stage.LoadContent(Content);
+            stage.LoadContent(Content, GraphicsDevice);
         }
 
         /// <summary>
